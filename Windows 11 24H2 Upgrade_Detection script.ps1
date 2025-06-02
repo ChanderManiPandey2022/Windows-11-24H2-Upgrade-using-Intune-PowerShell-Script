@@ -20,6 +20,8 @@
 # BlueSky:         https://bsky.app/profile/chandermanipandey.bsky.social
 # GitHub:          https://github.com/ChanderManiPandey2022
 
+# Update
+# v1.1 ---> Fixed to find the correct os build version  
 
 #========================User Input Section========
 
@@ -141,7 +143,7 @@ if ($availableSpaceGB -ge $DiskSpace) {
 
 
 # Check if system is not on Windows 11 24H2 and meets hardware requirements
-if ($OSVersion -lt 26100 -and `
+if ($OSBuild -lt 26100 -and `
     $tpmVersion -ge "2.0" -and `
     $firmwareInfo -eq "true" -and `
     $cpuInfo.Architecture -eq 9 -and `
@@ -163,13 +165,13 @@ if ($OSVersion -lt 26100 -and `
 
                     # Confirm the change
                     $Reg = Get-ItemProperty -Path $regPath | Select-Object UpgradeEligibility
-                    Write-log "Preparing the device for a Windows 11 upgrade by creating a registry entry to skip the 'PC Health Check Tool' eligibility checks. This is done by creating the registry path "HKCU:\Software\Microsoft\PCHC" and setting the UpgradeEligibility value (DWORD) to 1."
+                    Write-log "Preparing the device for a Windows 11 upgrade by creating a registry entry to skip the 'PC Health Check Tool' eligibility checks. This is done by creating the registry path HKCU:\Software\Microsoft\PCHC and setting the UpgradeEligibility value (DWORD) to 1."
 
     Write-Log 'System is not on Windows 11 24H2 and meets hardware requirements. Initiating Proactive Remediation...'
     Write-Host 'System is not on Windows 11 24H2 and meets hardware requirements. Initiating Proactive Remediation...'
     Exit -1
 }
-elseif ($OSVersion -lt 26100) {
+elseif ($OSBuild-lt 26100) {
     Write-Log 'System is not on Windows 11 24H2 but does not meet hardware requirements. Skipping upgrade.'
     Write-Host 'System is not on Windows 11 24H2 but does not meet hardware requirements. Skipping upgrade.'
     Exit 0
