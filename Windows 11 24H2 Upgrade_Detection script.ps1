@@ -32,7 +32,7 @@ $DiskSpace = "45"
 
 $error.clear() ## this is the clear error history 
 clear
-Set-ExecutionPolicy -ExecutionPolicy 'ByPass' -Force
+#Set-ExecutionPolicy -ExecutionPolicy 'ByPass' -Force
 $ErrorActionPreference = 'SilentlyContinue'
 
 # Initialize Logging
