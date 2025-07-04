@@ -191,7 +191,7 @@ if ($OSVersion -lt 26100) {
     
     $AppName = "Windows PC Health Check"
 
-    $App = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -eq $AppNmae } 
+    $App = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -eq $AppName } 
 
     if ($App.IdentifyingNumber -eq $null)
      {
